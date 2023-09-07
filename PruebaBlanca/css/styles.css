@@ -1,0 +1,160 @@
+:root {
+    --bgMain: #f3f3f3;
+    --bgArea: #00468D;
+    --AzulOscuro: #003469;
+    --AzulClaro: #B7DBFF;
+    --Blanco: #ffffff;
+    --Negro: #000000;
+    --Rojo: #950000;
+    --bgBloqueo: rgba(0,0,0,.7);
+    --bgBloqW: rgba(255,255,255,.5);
+  }
+
+* {
+    font-size: 2.5vh;
+    color: var(--Negro);
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bgMain);
+    z-index: 0;
+}
+
+.bgBloqueo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bgBloqueo);
+    visibility: hidden;
+}
+
+    .bgBloqueo img {
+        position: relative;
+        top: 40%;
+        left: 47%;
+        height: 10%;
+        width: auto;
+    }
+
+.ContenedorPrincipal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+
+    overflow: hidden;
+    background-color: var(--bgMain);
+}
+
+.Encabezado {
+    width: 100%;
+    padding: .5rem 2rem .5rem 2rem;
+    background-color: var(--bgArea);
+    color: var(--Blanco);
+}
+
+    .TblEncabezado {
+        width: 100%;
+    }
+
+        .TblEncabezado td {
+            text-align: center;
+        }
+
+        .TblEncabezado label {
+            color: var(--Blanco);
+        }
+
+    .Titulo {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--Blanco);
+    }
+
+    .SubTitulo {
+        display: block;
+        font-size: 1.1rem;
+        color: var(--bgMain);
+    }
+
+.Footer {
+    padding: 1rem 2rem 1rem 2rem;
+    border-top: 2px solid var(--AzulOscuro);
+}
+
+    .Botonera button {
+        float: right;
+        padding: .3rem 1rem .3rem 1rem;
+        color: var(--Negro);
+        border: 1px solid  var(--AzulOscuro);
+        outline: none;
+        min-width: 12%;
+    }
+
+    .Botonera button:hover {
+        cursor: pointer;
+        background-color: var(--AzulClaro);
+    }
+
+.AreaLista {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--bgMain);
+    padding: 1rem 3rem 1rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+    .ListaTareas {
+        background-color: var(--Blanco);
+        border-radius: 1rem;
+        padding: .5rem 1rem .5rem 1rem;
+    }
+
+        .ListaTareas table {
+            width: 100%;
+            border: none;
+        }
+
+            .ListaTareas tr td {
+                font-size: 1.2rem;
+                font-weight: bold;
+                padding: .5rem;
+                border-bottom: 1px solid var(--bgMain);
+            }
+
+            .ListaTareas tr:hover td {
+                cursor: pointer;
+                background-color: var(--AzulClaro);
+            }
+
+            .ListaTareas img {
+                width: 2.5vw;
+                height: auto;
+            }
+
+.Formulario{
+    width: 50%;
+    height: 50%;
+    border-radius: 1rem;
+    background-color:  var(--bgArea);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1rem 1rem 1rem 1rem;
+    margin: 0 3rem 1rem 3rem;
+    margin-left: 25%;
+    display: block;
+    
+}
