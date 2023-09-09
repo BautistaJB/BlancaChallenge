@@ -16,8 +16,8 @@
 
 
 -- Volcando estructura de base de datos para prueba
-CREATE DATABASE IF NOT EXISTS `prueba` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `prueba`;
+-- CREATE DATABASE IF NOT EXISTS `prueba` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+-- USE `prueba`;
 
 -- Volcando estructura para tabla prueba.bitacora
 CREATE TABLE IF NOT EXISTS `bitacora` (

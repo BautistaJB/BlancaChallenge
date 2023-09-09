@@ -3,7 +3,7 @@
 $host = "localhost";
 	$user = "root";
 	$password = "";
-	$bdatos = "prueba";
+	$bdatos = "alugama_blanca";
 
     $cnxn = mysqli_connect($host,$user,$password);
 	$db = mysqli_select_db($cnxn, $bdatos);

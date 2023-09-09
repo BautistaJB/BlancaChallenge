@@ -1,6 +1,6 @@
 <?php
 
-include("../mod/funciones.php");  
+include_once("../mod/funciones.php");  
 class Sms{
 
     public static function enviarSMS($mensaje, $idUsuario, $nombreCategoria){

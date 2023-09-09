@@ -47,10 +47,32 @@ function Espera(blbVer) {
     }
 }
 
+function Bitacora() {
+    Espera(true);
+    let LogList = document.getElementById("LogList");
+    let Ajax = new XMLHttpRequest();
+    Ajax.addEventListener("load", function () {
+        ObjJSON = JSON.parse(this.responseText);
+        if (ObjJSON.Resultado == 1) {
+        LogList.innerHTML = ObjJSON.Lista;
+        Espera(false);
+        }else {
+            Espera(false);
+            alert('No funciona');
+        }
+    }, false);
+    Ajax.open('POST', 'classes/registros.php');
+    Ajax.send();   
+
+}
+
 function TerminaCarga() {
     Espera(false);    
 }
 
+
+// Listeners
+window.addEventListener("load", Bitacora);
 
 // Listeners
 document.getElementById("formCategories").addEventListener("submit",

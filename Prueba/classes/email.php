@@ -1,6 +1,7 @@
 <?php
 
-include("../mod/funciones.php");  
+include_once("../mod/funciones.php");  
+include_once("usuarios.php");  
 class Email{
 
     public static function enviarEmail($mensaje, $idUsuario, $nombreCategoria){

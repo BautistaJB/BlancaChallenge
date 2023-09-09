@@ -1,6 +1,6 @@
 <?php
 
-include("../mod/funciones.php");  
+include_once("../mod/funciones.php");  
 class Push{
 
     public static function enviarPush($mensaje, $idUsuario, $nombreCategoria){

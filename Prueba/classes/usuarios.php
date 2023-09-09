@@ -1,6 +1,6 @@
 <?php
 
-include("../mod/funciones.php");
+include_once("../mod/funciones.php");
 
 class Usuario {
   
@@ -52,7 +52,5 @@ class Usuario {
 
 }
 
-$usuario = Usuario::obtenerUsuarioPorId(1);
 
-echo $usuario->obtenerNombre();
 

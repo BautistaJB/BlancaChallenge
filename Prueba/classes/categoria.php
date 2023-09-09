@@ -3,6 +3,8 @@
 //include("../mod/funciones.php");  
 
 include ("sms.php");
+include ("email.php");
+include ("push.php");
 
 $idCategoria = 0;
 $mensaje = "";
@@ -16,53 +18,52 @@ if (isset($_POST["message"]) && isset($_POST["message"]) != "" && isset($_GET["C
 
   $arrCategorias = explode(",", $Categorias);
   
-  class Categoria{
-     
-    public static function mandarSubscriptores($mensaje, $arrCategorias){
+    class Categoria{
+      
+      public static function mandarSubscriptores($mensaje, $arrCategorias){
 
-      foreach($arrCategorias as $idCategoria){
-        $sql = 'SELECT a.idCanal, a.idUsuario, c.nombreCanal, d.nombre, b.nombreCategoria 
-                FROM subscripciones a
-                LEFT JOIN categorias b  ON
-                    a.idCategoria = b.idCategoria
-                LEFT JOIN canales c ON
-                    a.idCanal = c.idCanal
-                LEFT JOIN usuarios d ON
-                    a.idUsuario = d.idUsuario
-                WHERE a.idCategoria = '.$idCategoria;         
+        foreach($arrCategorias as $idCategoria){
+          $sql = 'SELECT a.idCanal, a.idUsuario, c.nombreCanal, d.nombre, b.nombreCategoria 
+                  FROM subscripciones a
+                  LEFT JOIN categorias b  ON
+                      a.idCategoria = b.idCategoria
+                  LEFT JOIN canales c ON
+                      a.idCanal = c.idCanal
+                  LEFT JOIN usuarios d ON
+                      a.idUsuario = d.idUsuario
+                  WHERE a.idCategoria = '.$idCategoria;     
 
-          $Resultado = Consulta($sql);
-          $suscripciones = [];
-        
-          if ($Resultado) {
-              while ($row = mysqli_fetch_row($Resultado)) {            
-                  $suscripciones[] = [                  
-                    'idCanal'            => $row[0],
-                    'idUsuario'          => $row[1],
-                    'nombreCanal'        => $row[2],
-                    'nombreUsuario'      => $row[3],
-                    'nombreCategoria'    => $row[4],
-                  ];
-              }    
-              foreach ($suscripciones as $suscripcion) {
-                if ($suscripcion['idCanal'] == 1) {
-                  Sms::enviarSMS($mensaje, $suscripcion['idCanal'], $suscripcion['nombreCategoria']);
-                } elseif ($suscripcion['idCanal'] == 2) {
-                  Email::enviarEmail($mensaje, $suscripcion['idCanal'], $suscripcion['nombreCategoria']);
-                } elseif ($suscripcion['idCanal'] == 3) {
-                  Push::enviarPush($mensaje, $suscripcion['idCanal'], $suscripcion['nombreCategoria']);
-                }
-              }        	
-          }
-      }	 
-    }
-}
+            $Resultado = Consulta($sql);
+            $suscripciones = [];
+          
+            if ($Resultado) {
+                while ($row = mysqli_fetch_row($Resultado)) {            
+                    $suscripciones[] = [                  
+                      'idCanal'            => $row[0],
+                      'idUsuario'          => $row[1],
+                      'nombreCanal'        => $row[2],
+                      'nombreUsuario'      => $row[3],
+                      'nombreCategoria'    => $row[4],
+                    ];
+                }    
+                foreach ($suscripciones as $suscripcion) {
+                  if ($suscripcion['idCanal'] == 1) {
+                    Sms::enviarSMS($mensaje, $suscripcion['idUsuario'], $suscripcion['nombreCategoria']);
+                  } elseif ($suscripcion['idCanal'] == 2) {
+                    Email::enviarEmail($mensaje, $suscripcion['idUsuario'], $suscripcion['nombreCategoria']);
+                  } elseif ($suscripcion['idCanal'] == 3) {
+                    Push::enviarPush($mensaje, $suscripcion['idUsuario'], $suscripcion['nombreCategoria']);
+                  }
+                }        	
+            }
+        }	 
+      }
+  }
 
-  //categoria::mandarSubscriptores(1, 'Mensaje de prueba ' . date('Y-m-d H:i:s'));
+  Categoria::mandarSubscriptores($mensaje . " " . date('Y-m-d H:i:s'), $arrCategorias);
 
   $Res = 1;
-  echo '{"Resultado": '.$Res.'  
-        }';
+  echo '{"Resultado": '.$Res.'}';
 
 }else{
   echo "No se envio nada";
